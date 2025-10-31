@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meet New Friends</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>👋 I人識FD子</h1>
+            <p class="subtitle">🤫 不用開口來識個新朋友</p>
+        </header>
+
+        <main class="main-content">
+            <div class="buttons-container" id="buttonsContainer">
+                <button class="btn btn-accept" id="acceptBtn">
+                    <span class="btn-icon">😊</span>
+                    好呀，大家做個FD
+                </button>
+                <button class="btn btn-reject" id="rejectBtn">
+                    <span class="btn-icon">😔</span>
+                    我唔想識
+                </button>
+            </div>
+
+            <div class="contact-form hidden" id="contactForm">
+                <h2>🎉 多謝你願意識我</h2>
+                <p>📱 不如大家留個IG/WhatsApp俾對方，方便日後聯絡:</p>
+                
+                <div class="contact-options">
+                    <div class="option-group">
+                        <label class="radio-label">
+                            <input type="radio" name="contactMethod" value="instagram" id="instagramRadio" checked>
+                            <span class="radio-custom"></span>
+                            📷 Instagram
+                        </label>
+                        <input 
+                            type="text" 
+                            id="instagramInput" 
+                            class="contact-input" 
+                            placeholder="📷 輸入你嘅Instagram用戶名"
+                            pattern="^[a-zA-Z0-9_.]+$"
+                        >
+                    </div>
+
+                    <div class="option-group">
+                        <label class="radio-label">
+                            <input type="radio" name="contactMethod" value="whatsapp" id="whatsappRadio">
+                            <span class="radio-custom"></span>
+                            📞 WhatsApp
+                        </label>
+                        <input 
+                            type="tel" 
+                            id="whatsappInput" 
+                            class="contact-input hidden" 
+                            placeholder="📞 輸入你嘅WhatsApp號碼 (包含國家碼)"
+                            pattern="^\+?[1-9]\d{1,14}$"
+                        >
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button class="btn btn-submit" id="submitBtn">🚀 Share Contact</button>
+                    <button class="btn btn-back" id="backBtn">🔙 Back</button>
+                </div>
+            </div>
+        </main>
+
+        <!-- Modal for rejection -->
+        <div class="modal-overlay hidden" id="modalOverlay">
+            <div class="modal" id="rejectionModal">
+                <div class="modal-header">
+                    <h3>😔 唔好意思</h3>
+                </div>
+                <div class="modal-body">
+                    <p>🙇‍♂️ 打搞哂你，希望你唔介意。</p>
+                    <p>🙏 祝你有美好嘅一日！</p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-close" id="closeModalBtn">👍 好呀</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Success message -->
+        <div class="success-message hidden" id="successMessage">
+            <div class="success-content">
+                <h3>🎉 ✓ Contact Shared Successfully!</h3>
+                <p>🤝 We Are Connecting.</p>
+                <p>✨ 感謝你嘅聯繫！</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
