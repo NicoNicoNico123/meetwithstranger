@@ -9,6 +9,7 @@ const closeModalBtn = document.getElementById('closeModalBtn');
 const submitBtn = document.getElementById('submitBtn');
 const backBtn = document.getElementById('backBtn');
 const successMessage = document.getElementById('successMessage');
+const contactInfo = document.getElementById('contactInfo');
 
 // Contact form elements
 const instagramRadio = document.getElementById('instagramRadio');
@@ -195,6 +196,21 @@ function showError(inputElement, message = 'This field is required') {
 }
 
 function showSuccessMessage() {
+    const inputValue = currentContactMethod === 'instagram' 
+        ? instagramInput.value.trim() 
+        : whatsappInput.value.trim();
+    
+    // Format the contact information for display
+    let displayText = '';
+    if (currentContactMethod === 'instagram') {
+        displayText = `📷 Instagram: @${inputValue}`;
+    } else {
+        displayText = `📞 WhatsApp: ${inputValue}`;
+    }
+    
+    // Update the contact info in the success message
+    contactInfo.textContent = displayText;
+    
     // Hide contact form and show success message
     contactForm.classList.add('hidden');
     successMessage.classList.remove('hidden');
