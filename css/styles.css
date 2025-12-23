@@ -57,9 +57,11 @@ body {
 .buttons-container {
     display: flex;
     gap: 1rem;
-    margin-bottom: 2rem;
+    /* No extra bottom margin (it makes the buttons look shifted upward inside the card) */
+    margin: 0;
     flex-wrap: wrap;
     justify-content: center;
+    padding: 1rem 0;
 }
 
 /* Button styles */
@@ -319,6 +321,17 @@ body {
 .success-content p {
     color: #666;
     font-size: 1.1rem;
+}
+
+.success-actions {
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: center;
+}
+
+.success-actions .btn {
+    width: 100%;
+    max-width: 420px;
 }
 
 /* Utility classes */

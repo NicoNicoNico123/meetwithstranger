@@ -10,6 +10,7 @@ const submitBtn = document.getElementById('submitBtn');
 const backBtn = document.getElementById('backBtn');
 const successMessage = document.getElementById('successMessage');
 const contactInfo = document.getElementById('contactInfo');
+const successBackBtn = document.getElementById('successBackBtn');
 
 // Contact form elements
 const instagramRadio = document.getElementById('instagramRadio');
@@ -19,6 +20,7 @@ const whatsappInput = document.getElementById('whatsappInput');
 
 // State
 let currentContactMethod = 'instagram';
+let successAutoHideTimeoutId = null;
 
 // Event listeners
 acceptBtn.addEventListener('click', showContactForm);
@@ -27,6 +29,7 @@ closeModalBtn.addEventListener('click', closeModal);
 backBtn.addEventListener('click', backToButtons);
 submitBtn.addEventListener('click', submitContact);
 modalOverlay.addEventListener('click', handleOverlayClick);
+successBackBtn.addEventListener('click', backToFrontPage);
 
 // Radio button change listeners
 instagramRadio.addEventListener('change', () => switchContactMethod('instagram'));
@@ -69,6 +72,29 @@ function backToButtons() {
     contactForm.classList.add('hidden');
     buttonsContainer.classList.remove('hidden');
     successMessage.classList.add('hidden');
+}
+
+function backToFrontPage() {
+    // Ensure no background "hidden countdown" is running
+    if (successAutoHideTimeoutId !== null) {
+        clearTimeout(successAutoHideTimeoutId);
+        successAutoHideTimeoutId = null;
+    }
+
+    // Reset view to landing state
+    contactForm.classList.add('hidden');
+    successMessage.classList.add('hidden');
+    buttonsContainer.classList.remove('hidden');
+
+    // Reset form fields for next time
+    instagramInput.value = '';
+    whatsappInput.value = '';
+    instagramRadio.checked = true;
+    whatsappRadio.checked = false;
+    switchContactMethod('instagram');
+
+    // Restore focus for keyboard users
+    acceptBtn.focus();
 }
 
 function switchContactMethod(method) {
@@ -214,12 +240,13 @@ function showSuccessMessage() {
     // Hide contact form and show success message
     contactForm.classList.add('hidden');
     successMessage.classList.remove('hidden');
-    
-    // Hide success message after 5 seconds and return to buttons
-    setTimeout(() => {
-        successMessage.classList.add('hidden');
-        buttonsContainer.classList.remove('hidden');
-    }, 5000);
+
+    // No hidden countdown: user stays on success screen until they choose to go back.
+    // Clear any previous timeout just in case.
+    if (successAutoHideTimeoutId !== null) {
+        clearTimeout(successAutoHideTimeoutId);
+        successAutoHideTimeoutId = null;
+    }
 }
 
 // Keyboard navigation
