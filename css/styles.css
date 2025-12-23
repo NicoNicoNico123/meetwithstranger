@@ -14,6 +14,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 16px 0;
 }
 
 .container {
@@ -164,6 +165,10 @@ body {
 
 .contact-options {
     margin-bottom: 2rem;
+    /* Keep inputs aligned with action buttons */
+    max-width: 420px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .option-group {
@@ -217,7 +222,15 @@ body {
     border-radius: 8px;
     font-size: 1rem;
     transition: all 0.3s ease;
-    margin-left: 30px;
+    max-width: 100%;
+    background: #fff;
+    color: #333;
+    appearance: none;
+    display: block;
+}
+
+.contact-input::placeholder {
+    color: #9aa0a6;
 }
 
 .contact-input:focus {
@@ -230,6 +243,10 @@ body {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+    /* Match the width of the contact inputs section */
+    max-width: 420px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /* Modal styles */
@@ -342,6 +359,12 @@ body {
     .container {
         padding: 10px;
     }
+
+    /* On small screens, avoid vertical "center" clipping/awkwardness */
+    body {
+        align-items: flex-start;
+        padding: 16px 0 32px;
+    }
     
     .header h1 {
         font-size: 2rem;
@@ -356,7 +379,8 @@ body {
         align-items: center;
     }
     
-    .btn {
+    /* Only stack + cap the landing buttons (accept/reject) */
+    .buttons-container .btn {
         width: 100%;
         max-width: 250px;
     }
@@ -374,9 +398,34 @@ body {
     .main-content {
         padding: 1rem;
     }
+
+    .contact-form h2 {
+        font-size: 1.4rem;
+    }
+
+    .contact-form > p {
+        margin-bottom: 1.25rem;
+        font-size: 1rem;
+    }
+
+    .contact-options {
+        margin-bottom: 1.25rem;
+    }
+
+    .option-group {
+        margin-bottom: 1rem;
+    }
+
+    .radio-label {
+        font-size: 1.05rem;
+    }
     
     .btn {
         padding: 0.8rem 1.5rem;
         font-size: 1rem;
+    }
+
+    .contact-input {
+        padding: 0.9rem;
     }
 }
